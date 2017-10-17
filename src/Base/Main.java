@@ -22,14 +22,16 @@ public class Main {
         ui.terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 
         List<Laser> lasers = new ArrayList<>();
+        List<Laser> removeList = new ArrayList<>();
 
 
         while (true) {
             do {
                 ui.terminal.clearScreen();
-                checkLasers(lasers);
+                checkLasers(lasers, removeList);
                 moveLasers(lasers);
                 hitsTarget(lasers, p1, p2);
+                removeLasers(removeList, lasers);
                 ui.drawScoreBoard(p1, p2);
                 ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
                 ui.drawField();
@@ -83,16 +85,31 @@ public class Main {
         }
     }
 
-    public static void checkLasers(List<Laser> lL) {
+    public static void checkLasers(List<Laser> lL, List<Laser> removeList) {
         for (int i = lL.size() - 1; i >= 0; i--) {
 
             if (lL.get(i).getX() < 0 || lL.get(i).getX() > 100) {
-                lL.remove(i);
+                removeList.add(lL.get(i));
             }
-            lL.get(i).hitsLaser(lL);
 
         }
 
+    }
+    public static void removeLasers(List<Laser> removeList, List<Laser> lasers){
+        for (Laser lZ: lasers) {
+            lZ.hitsLaser(lasers, removeList);
+
+        }
+        for (int i = removeList.size()-1; i >= 0; i--) {
+            for (int j = lasers.size()-1; j >=0 ; j--) {
+                if (removeList.get(i) == lasers.get(j)){
+                    lasers.remove(j);
+                }
+
+            }
+            removeList.remove(i);
+
+        }
     }
 
     public static void hitsTarget(List<Laser> lL, Player p1, Player p2) {
