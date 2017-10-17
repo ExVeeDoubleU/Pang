@@ -15,29 +15,29 @@ public class Player {
     private int length;
     private int hp;
     private int playerNumber;
-    private char appearence;
+    private char appearance;
     private List<Body> body;
 
 
-    public Player(int x, int y, int speed, int length, int hp, int playerNumber, char appearence) {
+    public Player(int x, int y, int speed, int length, int hp, int playerNumber, char appearance) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.length = length;
         this.hp = hp;
         this.playerNumber = playerNumber;
-        this.appearence = appearence;
+        this.appearance = appearance;
     }
 
     public void createBody() {
         this.body = new ArrayList<Body>();
         for (int i = 0; i < getLength(); i++) {
-            getBody().add(new Body(getX(), (getY() - (getLength() / 2)) + i, getSpeed(), getPlayerNumber(), getAppearence()));
+            getBody().add(new Body(getX(), (getY() - (getLength() / 2)) + i, getSpeed(), getPlayerNumber(), getappearance()));
         }
     }
 
-    public void shoot(int startX, int dir, List<Laser> lasers){
-        lasers.add(new Laser(startX, getY(), 1*dir, '-'));
+    public void shoot(int startX, int dir, List<Laser> lasers, char appearance){
+        lasers.add(new Laser(startX, getY(), 1*dir, appearance));
 
         }
 
@@ -66,10 +66,7 @@ public class Player {
             b.setY(b.getY() - b.getSpeed());
         }
     }
-//    public void shoot(){
-//        new Body()
-//
-//    }
+
 
     //region getters and setters
     public int getX() {
@@ -128,12 +125,12 @@ public class Player {
         this.playerNumber = playerNumber;
     }
 
-    public char getAppearence() {
-        return appearence;
+    public char getappearance() {
+        return appearance;
     }
 
-    public void setAppearence(char appearence) {
-        this.appearence = appearence;
+    public void setappearance(char appearance) {
+        this.appearance = appearance;
     }
 
     public List<Body> getBody() {

@@ -34,12 +34,14 @@ public class Laser {
         {
             if(x==b.getX()&&y==b.getY()){
                 p1.setHp(p1.getHp()-1);
+                b.setAppearence('D');
             }
         }
         for(Body b : p2.getBody())
         {
             if(x==b.getX()&&y==b.getY()){
                 p2.setHp(p2.getHp()-1);
+                b.setAppearence('w');
             }
         }
     }
