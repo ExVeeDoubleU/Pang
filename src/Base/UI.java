@@ -22,11 +22,11 @@ public class UI {
     public void drawField() {
         for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 5);
-            terminal.putCharacter('-');
+            terminal.putCharacter('\u2588');
         }
         for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 29);
-            terminal.putCharacter('-');
+            terminal.putCharacter('\u2588');
         }
 
 
@@ -39,7 +39,7 @@ public class UI {
         char c2 = Character.forDigit(i2, 10);
         if (p1.getHp() <= 0) {
             terminal.moveCursor(2, 3);
-            terminal.putCharacter('0');
+            terminal.putCharacter('D');
         } else {
             terminal.moveCursor(2, 3);
             terminal.putCharacter(c1);

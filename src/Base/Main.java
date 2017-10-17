@@ -1,6 +1,7 @@
 package Base;
 
 import com.googlecode.lanterna.input.Key;
+import com.googlecode.lanterna.terminal.Terminal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +12,14 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         UI ui = new UI();
-        Player p1 = new Player(1, 13, 1, 5, 3, 1, 'X');
-        Player p2 = new Player(98, 13, 1, 5, 3, 2, 'O');
+        Player p1 = new Player(1, 17, 1, 5, 3, 1, '\u2588');
+        Player p2 = new Player(98, 17, 1, 5, 3, 2, '\u2588');
         ui.createTerminal();
+        ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
         p1.createBody();
         p2.createBody();
+
+        ui.terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 
         List<Laser> lasers = new ArrayList<>();
 
@@ -27,7 +31,9 @@ public class Main {
                 moveLasers(lasers);
                 hitsTarget(lasers, p1, p2);
                 ui.drawScoreBoard(p1, p2);
+                ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
                 ui.drawField();
+                ui.terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
                 draw(ui, p1, p2, lasers);
                 Thread.sleep(50);
                 key = ui.terminal.readInput();
@@ -42,7 +48,7 @@ public class Main {
                             p1.moveUp();
                             break;
                         case 'w':
-                            p1.shoot(p1.getX() + 1, 1, lasers, '\u27FE');
+                            p1.shoot(p1.getX() + 1, 1, lasers, '\u25a0');
                             break;
                         case 'k':
                             p2.moveDown();
@@ -51,7 +57,7 @@ public class Main {
                             p2.moveUp();
                             break;
                         case 'm':
-                            p2.shoot(p2.getX() - 1, -1, lasers, '\u27FD');
+                            p2.shoot(p2.getX() - 1, -1, lasers, '\u25a0');
 
                     }
                 }
@@ -61,8 +67,10 @@ public class Main {
     }
 
     public static void draw(UI ui, Player p1, Player p2, List<Laser> lL) {
+        ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
         ui.draw(p1);
         ui.draw(p2);
+        ui.terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 
         for (Laser l : lL) {
             l.draw(ui.terminal);
@@ -81,8 +89,10 @@ public class Main {
             if (lL.get(i).getX() < 0 || lL.get(i).getX() > 100) {
                 lL.remove(i);
             }
+            lL.get(i).hitsLaser(lL);
 
         }
+
     }
 
     public static void hitsTarget(List<Laser> lL, Player p1, Player p2) {
