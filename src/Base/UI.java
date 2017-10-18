@@ -70,6 +70,28 @@ public class UI {
         }
 
     }
+    public void menuDrawString() {
+        drawString(31, 8, true, " _____      __      ___      __     ");
+        drawString(31, 9, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
+        drawString(31, 10, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
+        drawString(31, 11, true, " \\ \\  __/\\ \\__/ \\_\\ \\_\\ \\_\\ \\____ \\ ");
+        drawString(31, 12, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
+        drawString(31, 13, true, "   \\ \\_\\                     /\\____/");
+        drawString(31, 14, true, "    \\/_/      by mojoroj     \\_/__/ ");
+        drawString(41, 17, true, "Push Enter to start");
+        drawString(45, 19, true, "Esc to quit");
+        drawString(40, 22, true, "Player 1");
+        drawString(53, 22, true, "Player 2");
+
+        drawString(50, 24, true, "▲");
+        drawString(50, 25, true, "▼");
+        terminal.applyForegroundColor(Terminal.Color.RED);
+        drawString(50, 26, true, "\u25a0");
+        terminal.applyForegroundColor(Terminal.Color.DEFAULT);
+
+
+    }
+
     public void uiDrawString() {
         drawString(2, 2, true, "Player 1");
         drawString(90, 2, true, "Player 2");
