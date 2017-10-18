@@ -3,7 +3,6 @@ package Base;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,21 +13,22 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         UI ui = new UI();
         ui.createTerminal();
-        while(true){
+        while (true) {
             menu(ui);
             ui.terminal.clearScreen();
             Game(ui);
             ui.terminal.clearScreen();
         }
     }
-    public static void menu(UI ui) throws InterruptedException{
+
+    public static void menu(UI ui) throws InterruptedException {
         boolean inMenu = true;
-        while(inMenu){
-            do{
+        while (inMenu) {
+            do {
                 ui.menuDrawString();
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
-            }while(key == null);
+            } while (key == null);
             switch (key.getKind()) {
                 case Escape:
                     System.exit(0);
@@ -68,8 +68,11 @@ public class Main {
                 draw(ui, p1, p2, lasers);
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
-                if(someoneDead(p1, p2))
+                if (someoneDead(p1, p2)) {
+                    winScreen(ui, p1, p2);
+                    Thread.sleep(1000);
                     return;
+                }
             } while (key == null);
             switch (key.getKind()) {
                 case Escape: {
@@ -158,7 +161,17 @@ public class Main {
         }
 
     }
-    public static boolean someoneDead(Player p1, Player p2){
+
+    public static boolean someoneDead(Player p1, Player p2) {
         return (p1.getHp() <= 0 || p2.getHp() <= 0);
+    }
+
+    public static void winScreen(UI ui, Player p1, Player p2) {
+        ui.terminal.clearScreen();
+        if (p1.getHp() <= 0) {
+            ui.drawString(45, 15, true, "Player 2 wins!");
+        } else if (p2.getHp() <= 0) {
+            ui.drawString(45, 15, true, "Player 1 wins!");
+        }
     }
 }
