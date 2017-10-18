@@ -33,16 +33,15 @@ public class UI {
     }
 
     public void drawScoreBoard(Player p1, Player p2) {
-        drawString(30, 4, true, "Le Baguette");
         int i1 = p1.getHp();
         char c1 = Character.forDigit(i1, 10);
         int i2 = p2.getHp();
         char c2 = Character.forDigit(i2, 10);
         if (p1.getHp() <= 0) {
-            terminal.moveCursor(2, 3);
+            terminal.moveCursor(9, 3);
             terminal.putCharacter('D');
         } else {
-            terminal.moveCursor(2, 3);
+            terminal.moveCursor(9, 3);
             terminal.putCharacter(c1);
         }
         if (p2.getHp() <= 0) {
@@ -70,5 +69,18 @@ public class UI {
 
         }
 
+    }
+    public void uiDrawString() {
+        drawString(2, 2, true, "Player 1");
+        drawString(90, 2, true, "Player 2");
+        drawString(2, 3, true, "Lives: ");
+        drawString(90, 3, true, "Lives: ");
+        drawString(31, 13, true, " _____      __      ___      __     ");
+        drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
+        drawString(31, 15, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
+        drawString(31, 16, true, " \\ \\  __/\\ \\__/ \\_\\ \\_\\ \\_\\ \\____ \\ ");
+        drawString(31, 17, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
+        drawString(31, 18, true, "   \\ \\_\\                     /\\____/");
+        drawString(31, 19, true, "    \\/_/      by mojoroj     \\_/__/ ");
     }
 }
