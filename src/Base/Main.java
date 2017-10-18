@@ -42,6 +42,7 @@ public class Main {
                     break;
             }
         }
+        key = null;
     }
 
 
@@ -97,6 +98,7 @@ public class Main {
             System.out.println(key.getKind() + " " + key.getCharacter());
         }
         ui.terminal.clearScreen();
+        key = null;
         menu(ui);
     }
 
@@ -149,9 +151,6 @@ public class Main {
 
     }
     public static boolean someoneDead(Player p1, Player p2){
-        if(p1.getHp() > 0 || p2.getHp() > 0)
-            return false;
-        else
-            return true;
+        return (p1.getHp() <= 0 || p2.getHp() <= 0);
     }
 }
