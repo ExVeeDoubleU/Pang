@@ -26,6 +26,10 @@ public class Body {
         terminal.moveCursor(getX(), getY());
         terminal.putCharacter(getAppearance());
     }
+    public void unDraw(Terminal terminal){
+        terminal.moveCursor(getX(), getY());
+        terminal.putCharacter(' ');
+    }
 //region getset
     public int getX() {
         return x;

@@ -20,7 +20,9 @@ public class Laser {
         this.appearance = appearance;
     }
 
-    public void move(){
+    public void move(Terminal terminal){
+        terminal.moveCursor(x, y);
+        terminal.putCharacter(' ');
         x=x+speed;
 
     }

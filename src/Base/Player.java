@@ -49,20 +49,22 @@ public class Player {
         }
     }
 
-    public void moveDown() {
+    public void moveDown(Terminal terminal) {
         if (getY() > 25)
             return;
         setY(getY() + getSpeed());
         for (Body b : getBody()) {
+            b.unDraw(terminal);
             b.setY(b.getY() + b.getSpeed());
         }
     }
 
-    public void moveUp() {
+    public void moveUp(Terminal terminal) {
         if (getY() < 9)
             return;
         setY(getY() - getSpeed());
         for (Body b : getBody()) {
+            b.unDraw(terminal);
             b.setY(b.getY() - b.getSpeed());
         }
     }
