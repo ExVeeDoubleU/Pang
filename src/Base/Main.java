@@ -70,13 +70,8 @@ public class Main {
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
                 if (someoneDead(p1, p2)) {
-<<<<<<< HEAD
                     winScreen(ui, mp3, p1, p2);
-                    Thread.sleep(1000);
-=======
-                    winScreen(ui, p1, p2);
                     Thread.sleep(2000);
->>>>>>> e7fdd7e504ea1dfc47cbfa6b46d4cd956fc30ee6
                     return;
                 }
             } while (key == null);
