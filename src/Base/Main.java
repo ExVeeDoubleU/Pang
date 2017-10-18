@@ -59,7 +59,7 @@ public class Main {
 //                ui.terminal.clearScreen();
                 checkLasers(lasers, removeList);
                 moveLasers(lasers, removeList, ui.terminal);
-                hitsTarget(lasers, p1, p2);
+                hitsTarget(lasers, p1, p2, removeList);
                 ui.drawScoreBoard(p1, p2);
                 ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
                 ui.drawField();
@@ -70,7 +70,7 @@ public class Main {
                 key = ui.terminal.readInput();
                 if (someoneDead(p1, p2)) {
                     winScreen(ui, p1, p2);
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                     return;
                 }
             } while (key == null);
@@ -153,10 +153,9 @@ public class Main {
     }
 
 
-    public static void hitsTarget(List<Laser> lL, Player p1, Player p2) {
+    public static void hitsTarget(List<Laser> lL, Player p1, Player p2, List<Laser> removeList) {
         for (Laser l : lL) {
-            l.hitsTarget(p1, p2);
-
+            l.hitsTarget(p1, p2, removeList);
 
         }
 
