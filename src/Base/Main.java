@@ -41,6 +41,9 @@ public class Main {
                 key = ui.terminal.readInput();
             } while (key == null);
             switch (key.getKind()) {
+                case Escape: {
+                    System.exit(0);
+                }
                 case NormalKey: {
                     switch (key.getCharacter()) {
                         case 'x':
