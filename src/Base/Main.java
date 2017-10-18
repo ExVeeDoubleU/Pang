@@ -12,11 +12,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         UI ui = new UI();
+        MP3Player mp3 = new MP3Player();
         ui.createTerminal();
         while (true) {
             menu(ui);
             ui.terminal.clearScreen();
-            Game(ui);
+            Game(ui, mp3);
             ui.terminal.clearScreen();
         }
     }
@@ -47,7 +48,7 @@ public class Main {
     }
 
 
-    public static void Game(UI ui) throws InterruptedException {
+    public static void Game(UI ui, MP3Player mp3) throws InterruptedException {
         Player p1 = new Player(1, 17, 1, 5, 3, 1, '\u2588');
         Player p2 = new Player(98, 17, 1, 5, 3, 2, '\u2588');
         p1.createBody();
@@ -69,7 +70,7 @@ public class Main {
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
                 if (someoneDead(p1, p2)) {
-                    winScreen(ui, p1, p2);
+                    winScreen(ui, mp3, p1, p2);
                     Thread.sleep(1000);
                     return;
                 }
@@ -87,6 +88,7 @@ public class Main {
                             p1.moveUp(ui.terminal);
                             break;
                         case 'w':
+                            mp3.playFX("Pew.mp3");
                             p1.shoot(p1.getX() + 1, 1, lasers, '\u25a0');
                             break;
                         case 'k':
@@ -96,6 +98,7 @@ public class Main {
                             p2.moveUp(ui.terminal);
                             break;
                         case 'm':
+                            mp3.playFX("Pou.wav");
                             p2.shoot(p2.getX() - 1, -1, lasers, '\u25a0');
 
                     }
@@ -166,11 +169,13 @@ public class Main {
         return (p1.getHp() <= 0 || p2.getHp() <= 0);
     }
 
-    public static void winScreen(UI ui, Player p1, Player p2) {
+    public static void winScreen(UI ui, MP3Player mp3, Player p1, Player p2) {
         ui.terminal.clearScreen();
         if (p1.getHp() <= 0) {
+            mp3.play("Yay.wav");
             ui.drawString(45, 15, true, "Player 2 wins!");
         } else if (p2.getHp() <= 0) {
+            mp3.play("Yey.wav");
             ui.drawString(45, 15, true, "Player 1 wins!");
         }
     }
