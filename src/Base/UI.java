@@ -33,6 +33,7 @@ public class UI {
     }
 
     public void drawScoreBoard(Player p1, Player p2) {
+        drawString(30, 4, true, "Le Baguette");
         int i1 = p1.getHp();
         char c1 = Character.forDigit(i1, 10);
         int i2 = p2.getHp();
@@ -51,5 +52,23 @@ public class UI {
             terminal.moveCursor(97, 3);
             terminal.putCharacter(c2);
         }
+    }
+    public void drawString(int startX, int startY, boolean isHorizontal, String string){
+
+        if(isHorizontal){
+            for (int i = 0; i < string.length(); i++) {
+                terminal.moveCursor(startX+i, startY);
+                terminal.putCharacter(string.charAt(i));
+            }
+
+        }
+        if(!isHorizontal){
+            for (int i = 0; i < string.length(); i++) {
+                terminal.moveCursor(startX, startY+i);
+                terminal.putCharacter(string.charAt(i));
+            }
+
+        }
+
     }
 }
