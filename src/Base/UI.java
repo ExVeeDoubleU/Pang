@@ -39,16 +39,14 @@ public class UI {
         char c2 = Character.forDigit(i2, 10);
         if (p1.getHp() <= 0) {
             terminal.moveCursor(9, 3);
-            terminal.putCharacter('0');
         } else {
             terminal.moveCursor(9, 3);
             terminal.putCharacter(c1);
         }
         if (p2.getHp() <= 0) {
-            terminal.moveCursor(97, 3);
-            terminal.putCharacter('0');
+            terminal.moveCursor(96, 3);
         } else {
-            terminal.moveCursor(97, 3);
+            terminal.moveCursor(96, 3);
             terminal.putCharacter(c2);
         }
     }
@@ -71,31 +69,41 @@ public class UI {
 
     }
     public void menuDrawString() {
-        terminal.applyForegroundColor(Terminal.Color.GREEN);
-        drawString(31, 8, true, " _____      __      ___      __     ");
-        drawString(31, 9, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
-        drawString(31, 10, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
-        drawString(31, 11, true, " \\ \\  __/\\ \\__/ \\_\\ \\_\\ \\_\\ \\____ \\ ");
-        drawString(31, 12, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
-        drawString(31, 13, true, "   \\ \\_\\                     /\\____/");
-        drawString(31, 14, true, "    \\/_/      by mojoroj     \\_/__/ ");
+        drawString(31, 13, true, " _____      __      ___      __     ");
+        drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
+        drawString(31, 15, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
+        drawString(31, 16, true, " \\ \\  __/\\ \\__/ \\_\\ \\_\\ \\_\\ \\____ \\ ");
+        drawString(31, 17, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
+        drawString(31, 18, true, "   \\ \\_\\                     /\\____/");
+        drawString(31, 19, true, "    \\/_/      by mojoroj     \\_/__/ ");
+        drawString(41, 23, true, "Push Enter to start");
+        drawString(45, 25, true, "Esc to quit");
+        drawString(79, 2, true, "Controls");
+        drawString(70, 4, true, "Player 1");
+        terminal.applyForegroundColor(Terminal.Color.RED);
+        drawString(79, 4, true, "■");
+        terminal.applyForegroundColor(Terminal.Color.CYAN);
+        drawString(85, 4, true, "■");
         terminal.applyForegroundColor(Terminal.Color.DEFAULT);
-        drawString(41, 17, true, "Push Enter to start");
-        drawString(45, 19, true, "Esc to quit");
-        drawString(47, 24, true, "Controls");
-        drawString(44, 26, false, "SXW");
-        drawString(56, 26, false, "OKM");
-        drawString(50, 26, false, "▲▼");
-        drawString(50, 28, true, "\u25a0");
+        drawString(87, 4, true, "Player 2");
+        drawString(75, 6, false, "SXW");
+        drawString(89, 6, false, "OKM");
+        drawString(82, 6, false, "▲▼");
+        drawString(82, 8, true, "■");
 
 
     }
 
     public void uiDrawString() {
         drawString(2, 2, true, "Player 1");
-        drawString(90, 2, true, "Player 2");
+        terminal.applyForegroundColor(Terminal.Color.RED);
+        drawString(11, 2, true, "■");
+        terminal.applyForegroundColor(Terminal.Color.CYAN);
+        drawString(87, 2, true, "■");
+        terminal.applyForegroundColor(Terminal.Color.DEFAULT);
+        drawString(89, 2, true, "Player 2");
         drawString(2, 3, true, "Lives: ");
-        drawString(90, 3, true, "Lives: ");
+        drawString(89, 3, true, "Lives: ");
         drawString(31, 13, true, " _____      __      ___      __     ");
         drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
         drawString(31, 15, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
