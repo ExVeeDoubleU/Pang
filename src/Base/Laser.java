@@ -11,13 +11,13 @@ public class Laser {
     private int x;
     private int y;
     private int speed;
-    private char appearence;
+    private char appearance;
 
-    public Laser(int x, int y, int speed, char appearence) {
+    public Laser(int x, int y, int speed, char appearance) {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.appearence = appearence;
+        this.appearance = appearance;
     }
 
     public void move(){
@@ -27,7 +27,7 @@ public class Laser {
 
     public void draw(Terminal terminal){
             terminal.moveCursor(x, y);
-            terminal.putCharacter(appearence);
+            terminal.putCharacter(appearance);
         }
 
     public void hitsTarget(Player p1, Player p2){
@@ -36,14 +36,14 @@ public class Laser {
         {
             if(x==b.getX()&&y==b.getY()){
                 p1.setHp(p1.getHp()-1);
-                b.setAppearence('D');
+                b.setAppearance('D');
             }
         }
         for(Body b : p2.getBody())
         {
             if(x==b.getX()&&y==b.getY()){
                 p2.setHp(p2.getHp()-1);
-                b.setAppearence('w');
+                b.setAppearance('w');
             }
         }
     }

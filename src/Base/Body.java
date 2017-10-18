@@ -11,20 +11,20 @@ public class Body {
     private int nextY;
     private int speed;
     private int playerNumber;
-    private char appearence;
+    private char appearance;
 
-    public Body(int x, int y, int speed, int playerNumber, char appearence) {
+    public Body(int x, int y, int speed, int playerNumber, char appearance) {
         this.x = x;
         this.y = y;
         this.nextX = x;
         this.nextY = y;
         this.speed = speed;
         this.playerNumber = playerNumber;
-        this.appearence = appearence;
+        this.appearance = appearance;
     }
     public void draw(Terminal terminal){
         terminal.moveCursor(getX(), getY());
-        terminal.putCharacter(getAppearence());
+        terminal.putCharacter(getAppearance());
     }
 //region getset
     public int getX() {
@@ -59,12 +59,12 @@ public class Body {
         this.playerNumber = playerNumber;
     }
 
-    public char getAppearence() {
-        return appearence;
+    public char getAppearance() {
+        return appearance;
     }
 
-    public void setAppearence(char appearence) {
-        this.appearence = appearence;
+    public void setAppearance(char appearance) {
+        this.appearance = appearance;
     }
     //endregion
 }
