@@ -29,9 +29,8 @@ public class Main {
             do {
                 ui.terminal.clearScreen();
                 checkLasers(lasers, removeList);
-                moveLasers(lasers);
+                moveLasers(lasers, removeList);
                 hitsTarget(lasers, p1, p2);
-                removeLasers(removeList, lasers);
                 ui.drawScoreBoard(p1, p2);
                 ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
                 ui.drawField();
@@ -82,9 +81,20 @@ public class Main {
         }
     }
 
-    public static void moveLasers(List<Laser> lL) {
+    public static void moveLasers(List<Laser> lL, List<Laser> removeList) {
         for (Laser l : lL) {
             l.move();
+            l.hitsLaser(lL, removeList);
+        }
+        for (int i = removeList.size()-1; i >= 0; i--) {
+            for (int j = lL.size()-1; j >=0 ; j--) {
+                if (removeList.get(i) == lL.get(j)){
+                    lL.remove(j);
+                }
+
+            }
+            removeList.remove(i);
+
         }
     }
 
@@ -98,22 +108,7 @@ public class Main {
         }
 
     }
-    public static void removeLasers(List<Laser> removeList, List<Laser> lasers){
-        for (Laser lZ: lasers) {
-            lZ.hitsLaser(lasers, removeList);
 
-        }
-        for (int i = removeList.size()-1; i >= 0; i--) {
-            for (int j = lasers.size()-1; j >=0 ; j--) {
-                if (removeList.get(i) == lasers.get(j)){
-                    lasers.remove(j);
-                }
-
-            }
-            removeList.remove(i);
-
-        }
-    }
 
     public static void hitsTarget(List<Laser> lL, Player p1, Player p2) {
         for (Laser l : lL) {
