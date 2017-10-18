@@ -106,10 +106,15 @@ public class Main {
     }
 
     public static void draw(UI ui, Player p1, Player p2, List<Laser> lL) {
-        ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
+        ui.terminal.applyForegroundColor(Terminal.Color.RED);
+        ui.terminal.applyBackgroundColor(Terminal.Color.RED);
         ui.draw(p1);
+        ui.terminal.applyBackgroundColor(Terminal.Color.CYAN);
+        ui.terminal.applyForegroundColor(Terminal.Color.CYAN);
         ui.draw(p2);
+        ui.terminal.applyForegroundColor(Terminal.Color.DEFAULT);
         ui.terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
+
 
         for (Laser l : lL) {
             l.draw(ui.terminal);
