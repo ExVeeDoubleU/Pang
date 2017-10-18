@@ -68,6 +68,8 @@ public class Main {
                 draw(ui, p1, p2, lasers);
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
+                if(someoneDead(p1, p2))
+                    return;
             } while (key == null);
             switch (key.getKind()) {
                 case Escape: {
