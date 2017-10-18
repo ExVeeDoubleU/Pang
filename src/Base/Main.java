@@ -25,6 +25,7 @@ public class Main {
         boolean inMenu = true;
         while(inMenu){
             do{
+                ui.menuDrawString();
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
             }while(key == null);
