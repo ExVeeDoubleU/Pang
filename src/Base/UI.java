@@ -71,6 +71,7 @@ public class UI {
 
     }
     public void menuDrawString() {
+        terminal.applyForegroundColor(Terminal.Color.GREEN);
         drawString(31, 8, true, " _____      __      ___      __     ");
         drawString(31, 9, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
         drawString(31, 10, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
@@ -78,16 +79,14 @@ public class UI {
         drawString(31, 12, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
         drawString(31, 13, true, "   \\ \\_\\                     /\\____/");
         drawString(31, 14, true, "    \\/_/      by mojoroj     \\_/__/ ");
+        terminal.applyForegroundColor(Terminal.Color.DEFAULT);
         drawString(41, 17, true, "Push Enter to start");
         drawString(45, 19, true, "Esc to quit");
-        drawString(40, 22, true, "Player 1");
-        drawString(53, 22, true, "Player 2");
-
-        drawString(50, 24, true, "▲");
-        drawString(50, 25, true, "▼");
-        terminal.applyForegroundColor(Terminal.Color.RED);
-        drawString(50, 26, true, "\u25a0");
-        terminal.applyForegroundColor(Terminal.Color.DEFAULT);
+        drawString(47, 24, true, "Controls");
+        drawString(44, 26, false, "SXW");
+        drawString(56, 26, false, "OKM");
+        drawString(50, 26, false, "▲▼");
+        drawString(50, 28, true, "\u25a0");
 
 
     }
