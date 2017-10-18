@@ -15,14 +15,15 @@ public class Main {
         MP3Player mp3 = new MP3Player();
         ui.createTerminal();
         while (true) {
-            menu(ui);
+            menu(ui, mp3);
             ui.terminal.clearScreen();
             Game(ui, mp3);
             ui.terminal.clearScreen();
         }
     }
 
-    public static void menu(UI ui) throws InterruptedException {
+    public static void menu(UI ui, MP3Player mp3) throws InterruptedException {
+        mp3.play("WLTP.wav", true);
         boolean inMenu = true;
         while (inMenu) {
             do {
@@ -88,7 +89,7 @@ public class Main {
                             p1.moveUp(ui.terminal);
                             break;
                         case 'w':
-                            mp3.playFX("Pew.mp3");
+                            mp3.playFX("Pew.wav");
                             p1.shoot(p1.getX() + 1, 1, lasers, '\u25a0');
                             break;
                         case 'k':
@@ -108,7 +109,7 @@ public class Main {
         }
         ui.terminal.clearScreen();
         key = null;
-        menu(ui);
+        menu(ui, mp3);
     }
 
     public static void draw(UI ui, Player p1, Player p2, List<Laser> lL) {
