@@ -24,7 +24,7 @@ public class UI {
             terminal.moveCursor(i, 5);
             terminal.putCharacter('\u2588');
         }
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 87; i++) {
             terminal.moveCursor(i, 29);
             terminal.putCharacter('\u2588');
         }
@@ -39,7 +39,7 @@ public class UI {
         char c2 = Character.forDigit(i2, 10);
         if (p1.getHp() <= 0) {
             terminal.moveCursor(9, 3);
-            terminal.putCharacter('D');
+            terminal.putCharacter('0');
         } else {
             terminal.moveCursor(9, 3);
             terminal.putCharacter(c1);
@@ -82,6 +82,7 @@ public class UI {
         drawString(31, 17, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
         drawString(31, 18, true, "   \\ \\_\\                     /\\____/");
         drawString(31, 19, true, "    \\/_/      by mojoroj     \\_/__/ ");
+        drawString(88, 29, true, "Esc to quit");
     }
 
 }
