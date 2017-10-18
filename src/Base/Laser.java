@@ -29,7 +29,12 @@ public class Laser {
 
     public void draw(Terminal terminal) {
         terminal.moveCursor(x, y);
-        terminal.applyForegroundColor(Terminal.Color.RED);
+        if(this.speed > 0)
+            terminal.applyForegroundColor(Terminal.Color.RED);
+        else if(this.speed < 0)
+            terminal.applyForegroundColor(Terminal.Color.CYAN);
+        else
+            terminal.applyForegroundColor(Terminal.Color.DEFAULT);
         terminal.putCharacter(appearance);
         terminal.applyForegroundColor(Terminal.Color.DEFAULT);
     }
