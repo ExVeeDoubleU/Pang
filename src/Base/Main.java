@@ -42,6 +42,10 @@ public class Main {
                 case Enter:
                 case ArrowRight:
                     inMenu = false;
+
+
+
+
                     break;
             }
         }
@@ -58,10 +62,10 @@ public class Main {
         List<Laser> removeList = new ArrayList<>();
         while (!someoneDead(p1, p2)) {
             do {
-//                ui.terminal.clearScreen();
+//              ui.terminal.clearScreen();
                 checkLasers(lasers, removeList);
                 moveLasers(lasers, removeList, ui.terminal);
-                hitsTarget(lasers, p1, p2, removeList);
+                hitsTarget(lasers, p1, p2, mp3, removeList);
                 ui.drawScoreBoard(p1, p2);
                 ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
                 ui.drawField();
@@ -157,9 +161,9 @@ public class Main {
     }
 
 
-    public static void hitsTarget(List<Laser> lL, Player p1, Player p2, List<Laser> removeList) {
+    public static void hitsTarget(List<Laser> lL, Player p1, Player p2, MP3Player mp3, List<Laser> removeList) {
         for (Laser l : lL) {
-            l.hitsTarget(p1, p2, removeList);
+            l.hitsTarget(p1, p2, mp3, removeList);
 
         }
 

@@ -39,18 +39,21 @@ public class Laser {
         terminal.applyForegroundColor(Terminal.Color.DEFAULT);
     }
 
-    public void hitsTarget(Player p1, Player p2, List<Laser> removeList) {
+    public void hitsTarget(Player p1, Player p2, MP3Player mp3, List<Laser> removeList) {
 
         for (Body b : p1.getBody()) {
             if (x == b.getX() && y == b.getY()) {
                 p1.setHp(p1.getHp() - 1);
                 removeList.add(this);
+                mp3.playFX("Hit.wav");
+
             }
         }
         for (Body b : p2.getBody()) {
             if (x == b.getX() && y == b.getY()) {
                 p2.setHp(p2.getHp() - 1);
                 removeList.add(this);
+                mp3.playFX("Hit.wav");
             }
         }
     }
