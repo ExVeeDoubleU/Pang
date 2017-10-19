@@ -23,7 +23,6 @@ class Main {
         }
     }
 
-    //MENU
     private static void menu(UI ui, MP3Player mp3) throws InterruptedException {
         //noinspection SpellCheckingInspection
         mp3.play("WLTP.wav", true); //Play background music on repeat.
@@ -34,10 +33,10 @@ class Main {
                 ui.menuDrawString();//Draw the menu as specified in UI class.
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
-            } while (key == null); //If key is pressed, exit loop.
+            } while (key == null);
             switch (key.getKind()) {
                 case Escape:
-                    System.exit(0);//Close program.
+                    System.exit(0);
                     break;
                 case Enter:
                     inMenu = false;
@@ -47,12 +46,13 @@ class Main {
         key = null;
     }
 
-    //GAME
     private static void game(UI ui, MP3Player mp3) throws InterruptedException {
-        Player p1 = new Player(1, 17, 1, 5, 6, 'X'); //Instantiate player 1
-        Player p2 = new Player(98, 17, 1, 5, 6, 'O');// Instantiate player 2
+        Player p1 = new Player(1, 17, 1, 5, 6, 'X');
+        Player p2 = new Player(98, 17, 1, 5, 6, 'O');
         p1.createBody();//Create paddle of player 1
         p2.createBody();//Create paddle of player 2
+        List<Wall> walls = new ArrayList<>();
+        createWalls(5, walls, ui.terminal);
         List<Laser> lasers = new ArrayList<>(); // Create list to store all laser objects.
         List<Laser> removeList = new ArrayList<>();// Create list to store laser objects that are waiting to be removed.
         ui.drawField(ui.terminal); // Draw playing field as specified in UI class.
@@ -62,6 +62,7 @@ class Main {
             do {
                 checkLasers(lasers, removeList); // Check if any laser objects are outside the play area, if so, add them to removeList.
                 moveLasers(lasers, removeList, ui.terminal); // Move all lasers. Remove all lasers that are stored in removeList.
+                checkWalls(walls, lasers, removeList, ui.terminal);
                 hitsTarget(lasers, p1, p2, mp3, removeList);// Check if any lasers hits a paddle and decrease health and play explosion sound if they do.
                 ui.drawScoreBoard(p1, p2);//Update remaining health of players.
                 ui.uiDrawString();//Draw GUI as specified in UI class.
@@ -147,7 +148,7 @@ class Main {
         }
     }
 
-    //Check if lasers have left the play area.
+    //Check if lasers have left the play area. If yes, place the laser object in the removeList
     private static void checkLasers(List<Laser> lL, List<Laser> removeList) {
         for (int i = lL.size() - 1; i >= 0; i--) {
 
@@ -159,7 +160,7 @@ class Main {
 
     }
 
-    //Check if a laser collides with a paddle, if yes, play explosion sound, decrease health of the player hit and add the laser to the removalList
+    //Check if a laser collides with a paddle, if yes, play explosion sound, decrease health of the player hit and add the laser to the removeList
     private static void hitsTarget(List<Laser> lL, Player p1, Player p2, MP3Player mp3, List<Laser> removeList) {
         for (Laser l : lL) {
             l.hitsTarget(p1, p2, mp3, removeList);
@@ -183,5 +184,25 @@ class Main {
             mp3.play("Yey.wav");
             ui.winDrawString(true, ui.terminal);
         }
+    }
+    private static void createWalls(int amountPerSide, List<Wall> walls, Terminal terminal){
+        for (int i = 0; i < amountPerSide ; i++) {
+            walls.add(new Wall(-1, -1, 28, 22,2,  '\u2588'));
+        }
+        for (int i = 0; i < amountPerSide ; i++) {
+            walls.add(new Wall(-1, -1, 30, 22,67, '\u2588'));
+        }
+        for (Wall w:walls) {
+            w.nextPos();
+            w.move();
+            w.draw(w.getX(), w.getY(), terminal);
+        }
+    }
+    //Check if a wall has the same x and y position as a laser.
+    private static void checkWalls(List<Wall> walls, List<Laser>lasers, List<Laser> removeList, Terminal terminal){
+        for (Wall w: walls) {
+            w.blockLaser(lasers, removeList, terminal);
+        }
+
     }
 }

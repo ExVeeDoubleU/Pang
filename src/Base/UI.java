@@ -41,11 +41,11 @@ class UI {
         terminal.applyBackgroundColor(Terminal.Color.WHITE);
         for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 5);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter(' ');
         }
         for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 29);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter(' ');
         }
         terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 
