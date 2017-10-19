@@ -3,57 +3,22 @@ package Base;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.terminal.Terminal;
 
-
 import java.nio.charset.Charset;
 
- class UI {
+class UI {
 
     Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF-8"));
 
-     void createTerminal() {
+    void createTerminal() {
         terminal.setCursorVisible(false);
         terminal.enterPrivateMode();
     }
 
-     void draw(Player player) {
+    void draw(Player player) {
         player.drawBody(terminal);
     }
 
-     void drawField(Terminal terminal) {
-        terminal.applyBackgroundColor(Terminal.Color.WHITE);
-        for (int i = 0; i < 100; i++) {
-            terminal.moveCursor(i, 5);
-            terminal.putCharacter('\u2588');
-        }
-        for (int i = 0; i < 100; i++) {
-            terminal.moveCursor(i, 29);
-            terminal.putCharacter('\u2588');
-        }
-        terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
-
-
-    }
-
-     void drawScoreBoard(Player p1, Player p2) {
-        int i1 = p1.getHp();
-        char c1 = Character.forDigit(i1, 10);
-        int i2 = p2.getHp();
-        char c2 = Character.forDigit(i2, 10);
-        if (p1.getHp() <= 0) {
-            terminal.moveCursor(9, 3);
-        } else {
-            terminal.moveCursor(9, 3);
-            terminal.putCharacter(c1);
-        }
-        if (p2.getHp() <= 0) {
-            terminal.moveCursor(96, 3);
-        } else {
-            terminal.moveCursor(96, 3);
-            terminal.putCharacter(c2);
-        }
-    }
-
-     private void drawString(int startX, int startY, boolean isHorizontal, String string) {
+    private void drawString(int startX, int startY, boolean isHorizontal, String string) {
 
         if (isHorizontal) {
             for (int i = 0; i < string.length(); i++) {
@@ -72,7 +37,41 @@ import java.nio.charset.Charset;
 
     }
 
-     void winDrawString(boolean isPlayer1, Terminal terminal) {
+    void drawField(Terminal terminal) {
+        terminal.applyBackgroundColor(Terminal.Color.WHITE);
+        for (int i = 0; i < 100; i++) {
+            terminal.moveCursor(i, 5);
+            terminal.putCharacter('\u2588');
+        }
+        for (int i = 0; i < 100; i++) {
+            terminal.moveCursor(i, 29);
+            terminal.putCharacter('\u2588');
+        }
+        terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
+
+
+    }
+
+    void drawScoreBoard(Player p1, Player p2) {
+        int i1 = p1.getHp();
+        char c1 = Character.forDigit(i1, 10);
+        int i2 = p2.getHp();
+        char c2 = Character.forDigit(i2, 10);
+        if (p1.getHp() <= 0) {
+            terminal.moveCursor(9, 3);
+        } else {
+            terminal.moveCursor(9, 3);
+            terminal.putCharacter(c1);
+        }
+        if (p2.getHp() <= 0) {
+            terminal.moveCursor(96, 3);
+        } else {
+            terminal.moveCursor(96, 3);
+            terminal.putCharacter(c2);
+        }
+    }
+
+    void winDrawString(boolean isPlayer1, Terminal terminal) {
         if (isPlayer1) {
             for (int y = 0; y < 30; y++) {
                 for (int x = 0; x < 100; x++) {
@@ -122,7 +121,7 @@ import java.nio.charset.Charset;
 
     }
 
-     void menuDrawString() {
+    void menuDrawString() {
         drawString(0, 29, true, "by Max, Jesper, Robin & John");
         drawString(31, 13, true, " _____      __      ___      __     ");
         drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
@@ -149,7 +148,7 @@ import java.nio.charset.Charset;
 
     }
 
-     void uiDrawString() {
+    void uiDrawString() {
         drawString(2, 2, true, "Player 1");
         terminal.applyForegroundColor(Terminal.Color.RED);
         drawString(11, 2, true, "■");

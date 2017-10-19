@@ -3,8 +3,8 @@ package Base;
 
 import com.googlecode.lanterna.terminal.Terminal;
 
- @SuppressWarnings("ALL")
- class Body {
+@SuppressWarnings("ALL")
+class Body {
 
     private int x;
     private int y;
@@ -17,44 +17,47 @@ import com.googlecode.lanterna.terminal.Terminal;
         this.speed = speed;
         this.appearance = appearance;
     }
-    void draw(Terminal terminal){
+
+    void draw(Terminal terminal) {
         terminal.moveCursor(getX(), getY());
         terminal.putCharacter(getAppearance());
     }
-    void unDraw(Terminal terminal){
+
+    void unDraw(Terminal terminal) {
         terminal.moveCursor(getX(), getY());
         terminal.putCharacter(' ');
     }
-//region getset
+
+    //region getset
     int getX() {
         return x;
     }
 
-     void setX(int x) {
+    void setX(int x) {
         this.x = x;
     }
 
-     int getY() {
+    int getY() {
         return y;
     }
 
-     void setY(int y) {
+    void setY(int y) {
         this.y = y;
     }
 
-     int getSpeed() {
+    int getSpeed() {
         return speed;
     }
 
-     void setSpeed(int speed) {
+    void setSpeed(int speed) {
         this.speed = speed;
     }
 
-     char getAppearance() {
+    char getAppearance() {
         return appearance;
     }
 
-     void setAppearance(char appearance) {
+    void setAppearance(char appearance) {
         this.appearance = appearance;
     }
     //endregion

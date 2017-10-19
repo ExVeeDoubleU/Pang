@@ -33,14 +33,14 @@ class Player {
         }
     }
 
-    void shoot(int startX, int dir, List<Laser> lasers, char appearance){
+    void shoot(int startX, int dir, List<Laser> lasers, char appearance) {
 //        lasers.add(new Laser(startX, getY(), dir, appearance));
 //        lasers.add(new Laser(startX, getY() - 1, dir, appearance));
 //        lasers.add(new Laser(startX, getY() + 1, dir, appearance));
         lasers.add(new Laser(startX, getY() - 2, dir, appearance));
         lasers.add(new Laser(startX, getY() + 2, dir, appearance));
 
-        }
+    }
 
 
     void drawBody(Terminal terminal) {

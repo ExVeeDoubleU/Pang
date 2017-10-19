@@ -34,7 +34,7 @@ class Main {
                 ui.menuDrawString();//Draw the menu as specified in UI class.
                 Thread.sleep(20);
                 key = ui.terminal.readInput();
-            } while (key == null); //If key is pressed, leave loop.
+            } while (key == null); //If key is pressed, exit loop.
             switch (key.getKind()) {
                 case Escape:
                     System.exit(0);//Close program.
@@ -53,14 +53,14 @@ class Main {
         Player p2 = new Player(98, 17, 1, 5, 6, 'O');// Instantiate player 2
         p1.createBody();//Create paddle of player 1
         p2.createBody();//Create paddle of player 2
-        List<Laser> lasers = new ArrayList<>(); // Create list to store all laser elements.
-        List<Laser> removeList = new ArrayList<>();// Create list to store laser elements that are waiting to be removed.
+        List<Laser> lasers = new ArrayList<>(); // Create list to store all laser objects.
+        List<Laser> removeList = new ArrayList<>();// Create list to store laser objects that are waiting to be removed.
         ui.drawField(ui.terminal); // Draw playing field as specified in UI class.
 
-        while (!someoneDead(p1, p2)) { // As long as nobody is dead, do...
+        while (!someoneDead(p1, p2)) { // As long as nobody is dead, loop.
 
             do {
-                checkLasers(lasers, removeList); // Check if any laser elements are outside the play area, if so, add them to removeList.
+                checkLasers(lasers, removeList); // Check if any laser objects are outside the play area, if so, add them to removeList.
                 moveLasers(lasers, removeList, ui.terminal); // Move all lasers. Remove all lasers that are stored in removeList.
                 hitsTarget(lasers, p1, p2, mp3, removeList);// Check if any lasers hits a paddle and decrease health and play explosion sound if they do.
                 ui.drawScoreBoard(p1, p2);//Update remaining health of players.
@@ -89,7 +89,7 @@ class Main {
                             break;
                         case 'w':
                             mp3.playFX("Pew.wav");//Play player 1's sound effect for firing a laser.
-                            p1.shoot(p1.getX() + 1, 1, lasers, '\u25a0');//Create laser elements for player 1.
+                            p1.shoot(p1.getX() + 1, 1, lasers, '\u25a0');//Create laser objects for player 1.
                             break;
                         case 'k':
                             p2.moveDown(ui.terminal);
@@ -99,7 +99,7 @@ class Main {
                             break;
                         case 'm':
                             mp3.playFX("Pou.wav");//Play player 2's sound effect for firing a laser.
-                            p2.shoot(p2.getX() - 1, -1, lasers, '\u25a0');//Create laser elements for player 2.
+                            p2.shoot(p2.getX() - 1, -1, lasers, '\u25a0');//Create laser objects for player 2.
 
                     }
                 }
@@ -129,7 +129,7 @@ class Main {
         }
     }
 
-    //Update position of lasers, check if lasers collide with each other and remove lasers that are npo longer in play.
+    //Update position of lasers, check if lasers collide with each other and remove lasers that are no longer in play.
     private static void moveLasers(List<Laser> lL, List<Laser> removeList, Terminal terminal) {
         for (Laser l : lL) {
             l.move(terminal);
