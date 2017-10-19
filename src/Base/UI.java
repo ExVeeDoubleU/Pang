@@ -19,15 +19,17 @@ public class UI {
         player.drawBody(terminal);
     }
 
-    public void drawField() {
+    public void drawField(Terminal terminal) {
+        terminal.applyBackgroundColor(Terminal.Color.WHITE);
         for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 5);
             terminal.putCharacter('\u2588');
         }
-        for (int i = 0; i < 87; i++) {
+        for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 29);
             terminal.putCharacter('\u2588');
         }
+        terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 
 
     }
@@ -50,25 +52,78 @@ public class UI {
             terminal.putCharacter(c2);
         }
     }
-    public void drawString(int startX, int startY, boolean isHorizontal, String string){
 
-        if(isHorizontal){
+    public void drawString(int startX, int startY, boolean isHorizontal, String string) {
+
+        if (isHorizontal) {
             for (int i = 0; i < string.length(); i++) {
-                terminal.moveCursor(startX+i, startY);
+                terminal.moveCursor(startX + i, startY);
                 terminal.putCharacter(string.charAt(i));
             }
 
         }
-        if(!isHorizontal){
+        if (!isHorizontal) {
             for (int i = 0; i < string.length(); i++) {
-                terminal.moveCursor(startX, startY+i);
+                terminal.moveCursor(startX, startY + i);
                 terminal.putCharacter(string.charAt(i));
             }
 
         }
 
     }
+
+    public void winDrawString(boolean isPlayer1, Terminal terminal) {
+        if (isPlayer1) {
+            for (int y = 0; y < 30; y++) {
+                for (int x = 0; x < 100; x++) {
+                    terminal.moveCursor(x, y);
+                    terminal.applyBackgroundColor(Terminal.Color.RED);
+                    terminal.putCharacter(' ');
+
+
+                }
+
+            }
+            terminal.applyForegroundColor(Terminal.Color.BLACK);
+            drawString(31, 13, true, " _____      __      ___      __     ");
+            drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
+            drawString(31, 15, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
+            drawString(31, 16, true, " \\ \\  __/\\ \\__/ \\_\\ \\_\\ \\_\\ \\____ \\ ");
+            drawString(31, 17, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
+            drawString(31, 18, true, "   \\ \\_\\                     /\\____/");
+            drawString(31, 19, true, "    \\/_/      by mojoroj     \\_/__/ ");
+            drawString(42, 10, true, "Player 1 wins!");
+            terminal.applyForegroundColor(Terminal.Color.DEFAULT);
+            terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
+        } else {
+            for (int y = 0; y < 30; y++) {
+                for (int x = 0; x < 100; x++) {
+                    terminal.moveCursor(x, y);
+                    terminal.applyBackgroundColor(Terminal.Color.CYAN);
+                    terminal.putCharacter(' ');
+
+
+                }
+
+            }
+            terminal.applyForegroundColor(Terminal.Color.BLACK);
+            drawString(31, 13, true, " _____      __      ___      __     ");
+            drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
+            drawString(31, 15, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
+            drawString(31, 16, true, " \\ \\  __/\\ \\__/ \\_\\ \\_\\ \\_\\ \\____ \\ ");
+            drawString(31, 17, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
+            drawString(31, 18, true, "   \\ \\_\\                     /\\____/");
+            drawString(31, 19, true, "    \\/_/      by mojoroj     \\_/__/ ");
+            drawString(42, 10, true, "Player 2 wins!");
+            terminal.applyForegroundColor(Terminal.Color.DEFAULT);
+            terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
+
+        }
+
+    }
+
     public void menuDrawString() {
+        drawString(0, 29, true, "by Max, Jesper, Robin & John");
         drawString(31, 13, true, " _____      __      ___      __     ");
         drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
         drawString(31, 15, true, "\\ \\ \\_\\ \\/\\ \\_\\ \\_/\\ \\/\\ \\/\\ \\_\\ \\  ");
@@ -111,7 +166,12 @@ public class UI {
         drawString(31, 17, true, "  \\ \\ \\/  \\/__/\\/_/\\/_/\\/_/\\/___ \\ \\");
         drawString(31, 18, true, "   \\ \\_\\                     /\\____/");
         drawString(31, 19, true, "    \\/_/      by mojoroj     \\_/__/ ");
+        terminal.applyBackgroundColor(Terminal.Color.WHITE);
+        terminal.applyForegroundColor(Terminal.Color.BLACK);
         drawString(88, 29, true, "Esc to quit");
+        drawString(0, 29, true, "by Max, Jesper, Robin & John");
+        terminal.applyForegroundColor(Terminal.Color.DEFAULT);
+        terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
     }
 
 }

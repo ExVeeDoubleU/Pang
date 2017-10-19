@@ -42,10 +42,6 @@ public class Main {
                 case Enter:
                 case ArrowRight:
                     inMenu = false;
-
-
-
-
                     break;
             }
         }
@@ -60,16 +56,13 @@ public class Main {
         p2.createBody();
         List<Laser> lasers = new ArrayList<>();
         List<Laser> removeList = new ArrayList<>();
+        ui.drawField(ui.terminal);
         while (!someoneDead(p1, p2)) {
             do {
-//              ui.terminal.clearScreen();
                 checkLasers(lasers, removeList);
                 moveLasers(lasers, removeList, ui.terminal);
                 hitsTarget(lasers, p1, p2, mp3, removeList);
                 ui.drawScoreBoard(p1, p2);
-                ui.terminal.applyBackgroundColor(Terminal.Color.WHITE);
-                ui.drawField();
-                ui.terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
                 ui.uiDrawString();
                 draw(ui, p1, p2, lasers);
                 Thread.sleep(20);
@@ -177,10 +170,10 @@ public class Main {
         ui.terminal.clearScreen();
         if (p1.getHp() <= 0) {
             mp3.play("Yay.wav");
-            ui.drawString(45, 15, true, "Player 2 wins!");
+            ui.winDrawString(false,ui.terminal);
         } else if (p2.getHp() <= 0) {
             mp3.play("Yey.wav");
-            ui.drawString(45, 15, true, "Player 1 wins!");
+            ui.winDrawString(true,ui.terminal);
         }
     }
 }
