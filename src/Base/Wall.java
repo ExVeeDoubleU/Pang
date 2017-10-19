@@ -5,8 +5,9 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("ALL")
 class Wall {
-    Random rand = new Random();
+    private final Random rand = new Random();
     private int x;
     private int y;
     private int nextX;
@@ -29,7 +30,7 @@ class Wall {
         terminal.moveCursor(x, y);
         terminal.putCharacter(appearance);
     }
-    void undraw(int x, int y, Terminal terminal){
+    private void undraw(int x, int y, Terminal terminal){
         terminal.moveCursor(x, y);
         terminal.putCharacter(' ');
     }
@@ -54,51 +55,51 @@ void blockLaser(List<Laser> lasers, List<Laser> removeList, Terminal terminal){
     }
 }
 //region Get Set
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public void setX(int x) {
+    void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public void setY(int y) {
+    void setY(int y) {
         this.y = y;
     }
 
-    public int getBoundX() {
+    int getBoundX() {
         return boundX;
     }
 
-    public void setBoundX(int boundX) {
+    void setBoundX(int boundX) {
         this.boundX = boundX;
     }
 
-    public int getBoundY() {
+    int getBoundY() {
         return boundY;
     }
 
-    public void setBoundY(int boundY) {
+    void setBoundY(int boundY) {
         this.boundY = boundY;
     }
 
-    public char getAppearance() {
+    char getAppearance() {
         return appearance;
     }
 
-    public void setAppearance(char appearence) {
-        this.appearance = appearence;
+    void setAppearance(char appearance) {
+        this.appearance = appearance;
     }
 
-    public int getBoundModifier() {
+    int getBoundModifier() {
         return boundModifier;
     }
 
-    public void setBoundModifier(int boundModifier) {
+    void setBoundModifier(int boundModifier) {
         this.boundModifier = boundModifier;
     }
     //endregion
