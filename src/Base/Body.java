@@ -3,71 +3,58 @@ package Base;
 
 import com.googlecode.lanterna.terminal.Terminal;
 
-public class Body {
+ @SuppressWarnings("ALL")
+ class Body {
 
     private int x;
     private int y;
-    private int nextX;
-    private int nextY;
     private int speed;
-    private int playerNumber;
     private char appearance;
 
-    public Body(int x, int y, int speed, int playerNumber, char appearance) {
+    Body(int x, int y, int speed, char appearance) {
         this.x = x;
         this.y = y;
-        this.nextX = x;
-        this.nextY = y;
         this.speed = speed;
-        this.playerNumber = playerNumber;
         this.appearance = appearance;
     }
-    public void draw(Terminal terminal){
+    void draw(Terminal terminal){
         terminal.moveCursor(getX(), getY());
         terminal.putCharacter(getAppearance());
     }
-    public void unDraw(Terminal terminal){
+    void unDraw(Terminal terminal){
         terminal.moveCursor(getX(), getY());
         terminal.putCharacter(' ');
     }
 //region getset
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public void setX(int x) {
+     void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
+     int getY() {
         return y;
     }
 
-    public void setY(int y) {
+     void setY(int y) {
         this.y = y;
     }
 
-    public int getSpeed() {
+     int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+     void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    public int getPlayerNumber() {
-        return playerNumber;
-    }
-
-    public void setPlayerNumber(int playerNumber) {
-        this.playerNumber = playerNumber;
-    }
-
-    public char getAppearance() {
+     char getAppearance() {
         return appearance;
     }
 
-    public void setAppearance(char appearance) {
+     void setAppearance(char appearance) {
         this.appearance = appearance;
     }
     //endregion

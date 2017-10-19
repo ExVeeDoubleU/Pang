@@ -6,20 +6,20 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.nio.charset.Charset;
 
-public class UI {
+ class UI {
 
     Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF-8"));
 
-    public void createTerminal() {
+     void createTerminal() {
         terminal.setCursorVisible(false);
         terminal.enterPrivateMode();
     }
 
-    public void draw(Player player) {
+     void draw(Player player) {
         player.drawBody(terminal);
     }
 
-    public void drawField(Terminal terminal) {
+     void drawField(Terminal terminal) {
         terminal.applyBackgroundColor(Terminal.Color.WHITE);
         for (int i = 0; i < 100; i++) {
             terminal.moveCursor(i, 5);
@@ -34,7 +34,7 @@ public class UI {
 
     }
 
-    public void drawScoreBoard(Player p1, Player p2) {
+     void drawScoreBoard(Player p1, Player p2) {
         int i1 = p1.getHp();
         char c1 = Character.forDigit(i1, 10);
         int i2 = p2.getHp();
@@ -53,7 +53,7 @@ public class UI {
         }
     }
 
-    public void drawString(int startX, int startY, boolean isHorizontal, String string) {
+     private void drawString(int startX, int startY, boolean isHorizontal, String string) {
 
         if (isHorizontal) {
             for (int i = 0; i < string.length(); i++) {
@@ -72,7 +72,7 @@ public class UI {
 
     }
 
-    public void winDrawString(boolean isPlayer1, Terminal terminal) {
+     void winDrawString(boolean isPlayer1, Terminal terminal) {
         if (isPlayer1) {
             for (int y = 0; y < 30; y++) {
                 for (int x = 0; x < 100; x++) {
@@ -122,7 +122,7 @@ public class UI {
 
     }
 
-    public void menuDrawString() {
+     void menuDrawString() {
         drawString(0, 29, true, "by Max, Jesper, Robin & John");
         drawString(31, 13, true, " _____      __      ___      __     ");
         drawString(31, 14, true, "/\\  __`\\  / __`\\  /  _ `\\  / _ `\\   ");
@@ -149,7 +149,7 @@ public class UI {
 
     }
 
-    public void uiDrawString() {
+     void uiDrawString() {
         drawString(2, 2, true, "Player 1");
         terminal.applyForegroundColor(Terminal.Color.RED);
         drawString(11, 2, true, "■");

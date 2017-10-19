@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Main {
-    static Key key;
+ class Main {
+    private static Key key;
 
-    public static void main(String[] args) throws InterruptedException {
+     @SuppressWarnings("InfiniteLoopStatement")
+     public static void main(String[] args) throws InterruptedException {
         UI ui = new UI();
         MP3Player mp3 = new MP3Player();
         ui.createTerminal();
@@ -22,8 +23,9 @@ public class Main {
         }
     }
 
-    public static void menu(UI ui, MP3Player mp3) throws InterruptedException {
-        mp3.play("WLTP.wav", true);
+     private static void menu(UI ui, MP3Player mp3) throws InterruptedException {
+         //noinspection SpellCheckingInspection
+         mp3.play("WLTP.wav", true);
         boolean inMenu = true;
         while (inMenu) {
             do {
@@ -49,9 +51,9 @@ public class Main {
     }
 
 
-    public static void Game(UI ui, MP3Player mp3) throws InterruptedException {
-        Player p1 = new Player(1, 17, 1, 5, 3, 1, '\u2588');
-        Player p2 = new Player(98, 17, 1, 5, 3, 2, '\u2588');
+     private static void Game(UI ui, MP3Player mp3) throws InterruptedException {
+        Player p1 = new Player(1, 17, 1, 5, 6, 'X');
+        Player p2 = new Player(98, 17, 1, 5, 6, 'O');
         p1.createBody();
         p2.createBody();
         List<Laser> lasers = new ArrayList<>();
@@ -109,7 +111,7 @@ public class Main {
         menu(ui, mp3);
     }
 
-    public static void draw(UI ui, Player p1, Player p2, List<Laser> lL) {
+     private static void draw(UI ui, Player p1, Player p2, List<Laser> lL) {
         ui.terminal.applyForegroundColor(Terminal.Color.RED);
         ui.terminal.applyBackgroundColor(Terminal.Color.RED);
         ui.draw(p1);
@@ -125,7 +127,7 @@ public class Main {
         }
     }
 
-    public static void moveLasers(List<Laser> lL, List<Laser> removeList, Terminal terminal) {
+     private static void moveLasers(List<Laser> lL, List<Laser> removeList, Terminal terminal) {
         for (Laser l : lL) {
             l.move(terminal);
             l.hitsLaser(lL, removeList);
@@ -142,7 +144,7 @@ public class Main {
         }
     }
 
-    public static void checkLasers(List<Laser> lL, List<Laser> removeList) {
+     private static void checkLasers(List<Laser> lL, List<Laser> removeList) {
         for (int i = lL.size() - 1; i >= 0; i--) {
 
             if (lL.get(i).getX() < 0 || lL.get(i).getX() > 100) {
@@ -154,7 +156,7 @@ public class Main {
     }
 
 
-    public static void hitsTarget(List<Laser> lL, Player p1, Player p2, MP3Player mp3, List<Laser> removeList) {
+     private static void hitsTarget(List<Laser> lL, Player p1, Player p2, MP3Player mp3, List<Laser> removeList) {
         for (Laser l : lL) {
             l.hitsTarget(p1, p2, mp3, removeList);
 
@@ -162,11 +164,11 @@ public class Main {
 
     }
 
-    public static boolean someoneDead(Player p1, Player p2) {
+     private static boolean someoneDead(Player p1, Player p2) {
         return (p1.getHp() <= 0 || p2.getHp() <= 0);
     }
 
-    public static void winScreen(UI ui, MP3Player mp3, Player p1, Player p2) {
+     private static void winScreen(UI ui, MP3Player mp3, Player p1, Player p2) {
         ui.terminal.clearScreen();
         if (p1.getHp() <= 0) {
             mp3.play("Yay.wav");
